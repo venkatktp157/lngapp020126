@@ -68,7 +68,8 @@ if auth_status:
         "MOUNT GOWER": ["LNG_TK1", "LNG_TK2"],
         "MOUNT GAEA": ["LNG_TK1", "LNG_TK2"],
         "MOUNT COOK": ["LNG_TK1", "LNG_TK2"],
-        "MOUNT ARARAT": ["LNG_TK1", "LNG_TK2"],    
+        "MOUNT ARARAT": ["LNG_TK1", "LNG_TK2"],  
+        "ATLANTIC PEARL": ["LNG_TK1", "LNG_TK2"], 
         "CMA CGM ARCTIC" : ["LNG_TK"],
         "CMA CGM BALI" : ["LNG_TK"],
         "CMA CGM DIGNITY" : ["LNG_TK"],
@@ -245,7 +246,7 @@ if auth_status:
                 list_min, list_max = (min(list_values), max(list_values)) if list_values else (None, None)
                 trim_min, trim_max = (min(trim_values), max(trim_values)) if trim_values else (None, None)
                 temp_min, temp_max = -163.0, 20.0
-                press_min, press_max = 0, 700
+                press_min, press_max = 0, 0.7
 
                 return level_min, level_max, list_min, list_max, trim_min, trim_max, temp_min, temp_max, press_min, press_max
             
@@ -278,7 +279,7 @@ if auth_status:
                 list_min, list_max = (min(list_values), max(list_values)) if list_values else (None, None)
                 trim_min, trim_max = (min(trim_values), max(trim_values)) if trim_values else (None, None)
                 temp_min, temp_max = -165.0, 20.0
-                press_min, press_max = 0, 700
+                press_min, press_max = 0, 0.7
 
                 return level_min, level_max, list_min, list_max, trim_min, trim_max, temp_min, temp_max, press_min, press_max
 
@@ -312,7 +313,7 @@ if auth_status:
                 list_min, list_max = (min(list_values), max(list_values)) if list_values else (None, None)
                 trim_min, trim_max = (min(trim_values), max(trim_values)) if trim_values else (None, None)
                 temp_min, temp_max = -163.0, 20.0
-                press_min, press_max = 0, 700
+                press_min, press_max = 0, 0.7
 
                 return level_min, level_max, list_min, list_max, trim_min, trim_max, temp_min, temp_max, press_min, press_max      
 
@@ -586,6 +587,12 @@ if auth_status:
             LNG_TK1_cap = 2324.113
             LNG_TK2_cap = 2322.097
             identity = "110k_tanker"
+
+        elif ship_id in ["ATLANTIC PEARL"]:   #111K_tanker
+            BOG_max = 1200    # to be ascertained
+            LNG_TK1_cap = 1816.435
+            LNG_TK2_cap = 1818.006
+            identity = "111k_tanker"
 
         elif ship_id in ["STARWAY", "GREENWAY"]:   #150K_tanker
             BOG_max = 1200
@@ -1104,7 +1111,7 @@ if auth_status:
                 list_min, list_max = (min(list_values), max(list_values)) if list_values else (None, None)
                 trim_min, trim_max = (min(trim_values), max(trim_values)) if trim_values else (None, None)
                 temp_min, temp_max = -165.0, 20.0
-                press_min, press_max = 0, 700
+                press_min, press_max = 0, 0.7
 
                 return level_min, level_max, list_min, list_max, trim_min, trim_max, temp_min, temp_max, press_min, press_max
 
@@ -1522,6 +1529,11 @@ if auth_status:
             LNG_TK1_cap = 2324.113
             LNG_TK2_cap = 2322.097
             identity = "110k_tanker"
+        elif ship_id in ["ATLANTIC PEARL"]:   #111K_tanker
+            BOG_max = 1200  # TO BE ASCERTAINED
+            LNG_TK1_cap = 1816.435
+            LNG_TK2_cap = 1818.006
+            identity = "111k_tanker"
         elif ship_id in ["STARWAY", "GREENWAY"]:   #150K_tanker
             BOG_max = 1200
             LNG_TK1_cap = 2570.133
