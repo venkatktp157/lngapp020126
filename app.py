@@ -523,8 +523,22 @@ if auth_status:
                 temp_correction = level_temp_interpolator([[level, temp_]])[0]
                 press_correction = level_press_interpolator([[level, press_]])[0]    
 
-                corrected_level = level + list_correction + trim_correction + temp_correction + press_correction    
+                corrected_level = level + list_correction + trim_correction + temp_correction + press_correction 
 
+                # Step 2: Debug print to see what’s happening 
+                print(f"[DEBUG] Corrected level for ship {ship_id}, tank {tank_id}: {corrected_level}") 
+                
+                # Step 3: Get valid bounds from your calibration table 
+                min_level = min(level) # levels is the array you used to build the interpolator 
+                max_level = max(level) 
+
+                print(f"[DEBUG] Valid level range: {min_level} – {max_level}") 
+
+                # Step 4: Clamp the corrected level if it’s outside bounds                 
+                if corrected_level < min_level or corrected_level > max_level: 
+                    print(f"[WARNING] Corrected level {corrected_level} out of bounds. Clamping to valid range.") 
+                    corrected_level = np.clip(corrected_level, min_level, max_level)
+                    
                 corrected_volume = level_volume_interpolator([[corrected_level]])[0]    
 
                 return round(corrected_level, 2), round(corrected_volume, 2)    
