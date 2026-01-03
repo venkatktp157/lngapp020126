@@ -527,17 +527,18 @@ if auth_status:
 
                 # Step 2: Debug print to see what’s happening 
                 print(f"[DEBUG] Corrected level for ship {ship_id}, tank {tank_id}: {corrected_level}") 
-                
-                # Step 3: Get valid bounds from your calibration table 
-                min_level = min(level) # levels is the array you used to build the interpolator 
-                max_level = max(level) 
 
-                print(f"[DEBUG] Valid level range: {min_level} – {max_level}") 
+                level_min, level_max = float(level_volume_df["level"].min()), float(level_volume_df["level"].max())
+                # # Step 3: Get valid bounds from your calibration table 
+                # min_level = min(level) # levels is the array you used to build the interpolator 
+                # max_level = max(level) 
+
+                print(f"[DEBUG] Valid level range: {level_min} – {level_max}") 
 
                 # Step 4: Clamp the corrected level if it’s outside bounds                 
-                if corrected_level < min_level or corrected_level > max_level: 
+                if corrected_level < level_min or corrected_level > level_max: 
                     print(f"[WARNING] Corrected level {corrected_level} out of bounds. Clamping to valid range.") 
-                    corrected_level = np.clip(corrected_level, min_level, max_level)
+                    corrected_level = np.clip(corrected_level, level_min, level_max)
                     
                 corrected_volume = level_volume_interpolator([[corrected_level]])[0]    
 
